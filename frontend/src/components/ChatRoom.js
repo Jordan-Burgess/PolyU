@@ -1,7 +1,10 @@
 import React from 'react'
+import ChatRoomHeader from './ChatRoomHeader'
 
 export default function ChatRoom() {
   return (
-    <div>ChatRoom</div>
+    <div>
+      <ChatRoomHeader/>
+    </div>
   )
 }
