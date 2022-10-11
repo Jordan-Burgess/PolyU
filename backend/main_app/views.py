@@ -1,12 +1,9 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
+from .models import Profile
 
 class Users(View):
     def get(self, request):
-        data = {
-            "name": "Vaibhav",
-            "age": 20,
-            "hobbies": ["Coding", "Art", "Gaming", "Cricket", "Piano"]
-        }
-        return JsonResponse(data)
+        data = list(Profile.objects.values())
+        return JsonResponse(data, safe=False)
