@@ -16,8 +16,6 @@ class Profile(models.Model):
 class Conversation(models.Model):
     users = models.ManyToManyField(User)
     
-    def __str__(self):
-        return self.id
 
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
@@ -25,5 +23,3 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.user
