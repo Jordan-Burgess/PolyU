@@ -14,7 +14,7 @@ class Profile(models.Model):
         return self.user.username
 
 class Conversation(models.Model):
-    room = models.CharField(max_length=500)
+    room = models.CharField(max_length=500, unique=True)
 
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
