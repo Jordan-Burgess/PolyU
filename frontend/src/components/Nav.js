@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Nav() {
   return (
     <div>
-        <a href='#'>Profile</a>
-        <a href='#'>Chat</a>
-        <a href='#'>Find Partner</a>
-        <a href='#'>Events</a>
+        <Link to='/'>Profile</Link>
+        <Link to='/chat'>Chat</Link>
+        <Link to='/partners'>Partners</Link>
+        <Link to='/events'>Events</Link>
     </div>
   )
 }
