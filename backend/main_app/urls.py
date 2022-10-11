@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.Users.as_view(), name="users"),
-    path('conversations/', views.Conversations.as_view(), name="conversations")
+    path('conversations/<int:pk>/', views.Conversations.as_view(), name="conversations"),
+    path('newconversation/<int:host>/<int:newuser>/', views.ConversationCreate.as_view(), name="create_convo"),
 ]
