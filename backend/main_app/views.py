@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
-from .models import Profile, Conversation, Message
+from .models import Profile, Conversation, Message, User
 
 class Users(View):
-    def get(self, request):
-        data = list(Profile.objects.values())
+    def get(self, request, id):
+        data = list(User.objects.values().filter(id=id))
+        data.append(list(Profile.objects.values().filter(user_id=id)))
         return JsonResponse(data, safe=False)
 
 class Conversations(View):
