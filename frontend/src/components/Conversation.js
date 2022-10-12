@@ -21,9 +21,28 @@ export default function Conversation() {
     setText(e.target.value)
   }
     
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setText('')      
+    try {
+      const newMessage = {
+        text: text,
+        user: 1
+      }
+      const messageOutput = JSON.stringify(newMessage)
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: messageOutput
+      }
+      const response = await fetch(BASE_URL, options)
+      const responseData = await response.json()
+      setAllMessages([...allMessages, responseData])
+      setText('')
+    }catch(err){
+      console.log(err)
+    } 
   }
 
   useEffect(()=>{
@@ -54,12 +73,12 @@ export default function Conversation() {
         <input
           type="text"
           value={text}
-          name="message"
+          name="text"
           placeholer="Enter Message"
           onChange={handleChange}
           required
         />
-        <input type='submit' value='Enter'/>
+        <input type='Submit' value='Enter'/>
       </form>
     </div>
   )
