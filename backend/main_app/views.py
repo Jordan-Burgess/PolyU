@@ -3,22 +3,39 @@ from django.views import View
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Profile, Conversation, Message, User
-from .serializer import UserSerializer
+from .models import Profile, Message, User
+from .serializer import MessageSerializer, UserSerializer, ProfileSerializer
+from main_app import serializer
 
 class Users(APIView):
     def get(self, request):
         data = User.objects.all()
         serializer = UserSerializer(data, many=True)
-        return Response(serializer.data)
+        return JsonResponse(serializer.data, safe=False)
 
 class UserInfo(APIView):
-    def get(self, request, id):
-        data = list(User.objects.values().filter(id=id))
-        data.append(list(Profile.objects.values().filter(user_id=id)))
-        return JsonResponse(data, safe=False)
+    def get_user_auth(self, id):
+        return User.objects.all().filter(id=id)
+    
+    def get_user_profile(self, id):
+        return Profile.objects.all().filter(user_id=id)
 
-class Conversations(View):
+    def get(self, request, id):
+        user = UserSerializer(self.get_user_auth(id), many=True)
+        profile = ProfileSerializer(self.get_user_profile(id), many=True)
+        return JsonResponse({"user": user.data, "profile": profile.data}, safe=False)
+
+class ConversationMessages(APIView):
     def get(self, request, pk):
-        data = list(Message.objects.values().filter(conversation_id=pk))
-        return JsonResponse(data, safe=False)
+        data = Message.objects.all().filter(conversation_id=pk)
+        serializer = MessageSerializer(data, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    def post(self, request, pk):
+        request.data['conversation'] = pk
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            return JsonResponse(serializer.errors)

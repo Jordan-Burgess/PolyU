@@ -1,17 +1,22 @@
 from rest_framework import serializers
-from .models import User, Conversation, Message
+from .models import User, Conversation, Message, Profile
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        field = "__all__"
+        fields = "__all__"
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"
 
 class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
-        field = "__all__"
+        fields = "__all__"
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        field = "__all__"
+        fields = "__all__"
