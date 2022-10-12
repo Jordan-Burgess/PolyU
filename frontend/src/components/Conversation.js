@@ -1,32 +1,66 @@
 import { useState, useEffect } from 'react'
 
 export default function Conversation() {
-  const [messages, setMessages] = useState([])
+  const [allMessages, setAllMessages] = useState([])
   const BASE_URL = `http://localhost:8000/conversations/1/`
   
   const getMessages = async () => {
 
     try {
-      console.log('test2')
       const response = await fetch(BASE_URL);
-      console.log("test", response)
       const allMessages = await response.json();
-      setMessages(allMessages)
-      console.log(allMessages)
+      setAllMessages(allMessages)
   
     }catch(err){
       console.log(err)
     }
   }
 
+  const [text, setText] = useState('')
+  const handleChange = (e) => {
+    setText(e.target.value)
+  }
+    
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setText('')      
+  }
+
   useEffect(()=>{
     getMessages()
   }, [])
 
-  return (
-    <div>Conversation
-      <p>There are {messages.length} messages</p>
-    </div>
+  const loaded = () => {
+    return allMessages?.map((text) => {
+      return (
+        <div>
+          <p>{text.text}</p>
+          <p>{text.user_id}</p>
+          <p>{text.created_at}</p>
+        </div>
+      )
+    })
+  }
+  const loading = () => {
+    return(
+      <h1>Loading</h1>
+    )
+  }
 
+  return (
+    <div>
+      {allMessages ? loaded() : loading()}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={text}
+          name="message"
+          placeholer="Enter Message"
+          onChange={handleChange}
+          required
+        />
+        <input type='submit' value='Enter'/>
+      </form>
+    </div>
   )
 }

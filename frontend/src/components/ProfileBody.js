@@ -1,6 +1,4 @@
-import React from 'react'
-
-export default function ProfileBody() {
+export default function ProfileBody({user}) {
   return (
     <div>
         <section>
@@ -9,7 +7,7 @@ export default function ProfileBody() {
         </section>
         <section>
             <h3>About Me</h3>
-            <p>Bio</p>
+            <p>{user[1][0].bio}</p>
         </section>
         <section>
             <h3>Language Focus</h3>
