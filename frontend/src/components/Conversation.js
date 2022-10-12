@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 export default function Conversation({socket}) {
   const [allMessages, setAllMessages] = useState([])
-  const BASE_URL = `http://localhost:8000/conversations/2/`
+  const BASE_URL = `http://localhost:8000/conversations/1/`
   
   const getMessages = async () => {
 
