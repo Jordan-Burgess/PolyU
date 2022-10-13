@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import ChatPreview from './ChatPreview'
 
-export default function AllChats({user, socket}) {
+export default function AllChats({user, socket, setConId, conId}) {
   const id = user.user_id
   const BASE_URL = `http://localhost:8000/conversations/user/${id}/`
 
@@ -23,8 +23,14 @@ export default function AllChats({user, socket}) {
 
   const loaded = () => {
     return conversations?.map((con) => {
+      const handleClick = () => {
+        setConId(con.id)
+      }
+      
       return (
-          <ChatPreview con={con.id} socket={socket}/>
+          <a href="#" onClick={handleClick}>
+            <ChatPreview con={con.id} socket={socket} />
+          </a>
       );
     });
   };

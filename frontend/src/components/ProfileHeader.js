@@ -1,4 +1,4 @@
-export default function ProfileHeader({user}) {
+export default function ProfileHeader({user, isOwner}) {
   return (
     <div>
         <img src='#' alt='banner'/>
@@ -8,9 +8,14 @@ export default function ProfileHeader({user}) {
             <h2>Native Language: {user.profile[0].native_language}</h2>
         </div>
         <div>
+            {isOwner ? (
+            <div>
             <a href="#">Edit</a>
             <a href="#">Settings</a>
+            </div>
+            ) : 
             <a href='#'>Chat With Username</a>
+            }
         </div>
     </div>
   )

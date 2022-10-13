@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react'
 
-export default function Conversation({socket}) {
+export default function Conversation({socket, conId, setLastMessage, lastMessage}) {
   const [allMessages, setAllMessages] = useState([])
-  const BASE_URL = `http://localhost:8000/conversations/1/`
+  const BASE_URL = `http://localhost:8000/conversations/${conId}/`
+  
   
   const getMessages = async () => {
-
-    try {
-      const response = await fetch(BASE_URL);
-      const allMessages = await response.json();
-      setAllMessages(allMessages)
-  
-    }catch(err){
-      console.log(err)
+    console.log(conId)
+    if (conId) {
+      try {
+        const response = await fetch(BASE_URL);
+        const allMessages = await response.json();
+        setAllMessages(allMessages)
+    
+      }catch(err){
+        console.log(err)
+      }
     }
   }
 
@@ -40,6 +43,7 @@ export default function Conversation({socket}) {
       const responseData = await response.json()
       setAllMessages([...allMessages, responseData])
       socket.emit("send_message", responseData)
+      setLastMessage(responseData)
       setText('')
     }catch(err){
       console.log(err)
@@ -48,7 +52,7 @@ export default function Conversation({socket}) {
 
   useEffect(()=>{
     getMessages()
-  }, [])
+  }, [conId])
 
   useEffect(()=>{
     socket.on("receive_message", (data) => {

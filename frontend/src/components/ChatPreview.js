@@ -19,7 +19,7 @@ export default function ChatPreview({con, socket}) {
   
   useEffect(()=>{
     getMessages()
-  }, [])
+  }, [lastMessage])
 
   useEffect(()=>{
     socket.on("receive_message", (data) => {
