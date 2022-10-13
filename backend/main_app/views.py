@@ -37,6 +37,22 @@ class Conversations(APIView):
         serializer = ConversationSerializer(data, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+class CreateConversation(APIView):
+    def post(self, request, id1, id2):
+        data = Conversation.objects.all().filter(users__id=id1)
+        data2 = data.filter(users__id=id2)
+        if bool(data2):
+            serializer = ConversationSerializer(data2, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            request.data['users'] = [id1, id2]
+            serializer = ConversationSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data, safe=False)
+            else:
+                return JsonResponse(serializer.errors)
+        
 class ConversationMessages(APIView):
     def get(self, request, pk):
         data = Message.objects.all().filter(conversation_id=pk)
