@@ -6,8 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import permission_classes
-from .models import Profile, Message, User
-from .serializer import MessageSerializer, UserSerializer, ProfileSerializer, MyTokenObtainPairSerializer
+from .models import Profile, Message, User, Conversation
+from .serializer import MessageSerializer, UserSerializer, ProfileSerializer, MyTokenObtainPairSerializer, ConversationSerializer
 from main_app import serializer
 
 class Users(APIView):
@@ -30,6 +30,12 @@ class UserInfo(APIView):
         user = UserSerializer(self.get_user_auth(id), many=True)
         profile = ProfileSerializer(self.get_user_profile(id), many=True)
         return JsonResponse({"user": user.data, "profile": profile.data}, safe=False)
+
+class Conversations(APIView):
+    def get(self, request, id):
+        data = Conversation.objects.all().filter(users__id=id)
+        serializer = ConversationSerializer(data, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 class ConversationMessages(APIView):
     def get(self, request, pk):
