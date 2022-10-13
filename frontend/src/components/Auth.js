@@ -5,21 +5,21 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext()
 export default AuthContext;
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
+    const [loading, setLoading] = useState(false)
     const [authTokens, setAuthTokens] = useState(() => 
     localStorage.getItem('authTokens')
     ? JSON.parse(localStorage.getItem('authTokens'))
     : null
   )
   const [user, setUser] = useState(() => 
-    localStorage.getItem('authTokes')
+    localStorage.getItem('authTokens')
     ? jwt_decode(localStorage.getItem('authTokens'))
     : null
   )
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
 
-  const loginUser = async(username, password) => {
+  const loginUser = async({username, password}) => {
     const response = await fetch("http://localhost:8000/token/", {
       method: 'POST',
       headers: {
@@ -32,7 +32,8 @@ export const AuthProvider = ({children}) => {
       setAuthTokens(data)
       setUser(jwt_decode(data.access));
       localStorage.setItem('authTokens', JSON.stringify(data))
-      navigate('profile')
+      console.log('Auth: ',user)
+    //   navigate('profile')
     }else{
       console.log('Fetch Error')
     }
@@ -54,16 +55,20 @@ export const AuthProvider = ({children}) => {
     logoutUser
   }
 
+  console.log("Auth2:", user)
   useEffect(() => {
+    setLoading(true)
     if (authTokens) {
       setUser(jwt_decode(authTokens.access))
     }
-    setLoading(false);
-  }, [authTokens, loading])
+    setLoading(false)
+  }, [authTokens])
 
+  if(loading) return <p>Loading</p>
+  
   return (
     <AuthContext.Provider value={contextData}>
-        {loading ? null : children}
+        {children}
     </AuthContext.Provider>
   );
   

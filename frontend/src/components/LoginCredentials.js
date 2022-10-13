@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import {useNavigate} from 'react-router-dom'
+import AuthContext from "../components/Auth";
 
 export default function LoginCredentials() {
+  let {loginUser} = useContext(AuthContext)
   const navigate = useNavigate()
   const [userInput, setUserInput] = useState({ username: "", password: "" });
   function handleChange(e) {
@@ -10,6 +12,7 @@ export default function LoginCredentials() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    loginUser(userInput)
     navigate('/profile')
   }
 

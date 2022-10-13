@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileBody from '../components/ProfileBody'
 import Nav from '../components/Nav'
+import AuthContext from '../components/Auth'
 
 export default function Profile() {
   const [user, setUser] = useState(null)
-  const BASE_URL = `http://localhost:8000/1/`
+  let userIn = useContext(AuthContext)
+  const id = userIn.user.user_id
+  const BASE_URL = `http://localhost:8000/${id}/`
   
   const getUser = async () => {
       try {
