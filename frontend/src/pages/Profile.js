@@ -31,7 +31,7 @@ export default function Profile() {
   const loaded = () => {
     return (
       <div>Profile
-        <ProfileHeader user={user} isOwner={isOwner}/>
+        <ProfileHeader user={user} isOwner={isOwner} id={id} userIn={userIn.user.user_id}/>
         <ProfileBody user={user}/>
       </div>
     )

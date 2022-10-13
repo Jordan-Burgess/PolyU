@@ -29,7 +29,7 @@ export default function AllChats({user, socket, setConId, conId}) {
       
       return (
           <a href="#" onClick={handleClick}>
-            <ChatPreview con={con.id} socket={socket} />
+            <ChatPreview con={con.id || conId} socket={socket} />
           </a>
       );
     });
