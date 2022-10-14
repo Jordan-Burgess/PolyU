@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.http import JsonResponse
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import permission_classes
 from .models import Profile, Message, User, Conversation
-from .serializer import MessageSerializer, UserSerializer, ProfileSerializer, MyTokenObtainPairSerializer, ConversationSerializer
+from .serializer import MessageSerializer, UserSerializer, ProfileSerializer, MyTokenObtainPairSerializer, ConversationSerializer, RegisterSerializer
 from main_app import serializer
 
 class Users(APIView):
@@ -18,6 +19,11 @@ class Users(APIView):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
 
 class UserInfo(APIView):
     def get_user_auth(self, id):
@@ -30,6 +36,10 @@ class UserInfo(APIView):
         user = UserSerializer(self.get_user_auth(id), many=True)
         profile = ProfileSerializer(self.get_user_profile(id), many=True)
         return JsonResponse({"user": user.data, "profile": profile.data}, safe=False)
+
+    def post(self, request, id):
+
+        return id
 
 class Conversations(APIView):
     def get(self, request, id):
