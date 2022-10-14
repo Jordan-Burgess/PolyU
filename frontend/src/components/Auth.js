@@ -39,6 +39,25 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const registerUser = async (username, password, password2) => {
+    const response = await fetch("http://localhost:8000/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username,
+        password,
+        password2
+      })
+    });
+    if (response.status === 201) {
+      navigate('/');
+    } else {
+      console.log("Something went wrong!");
+    }
+  };
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -51,6 +70,7 @@ export const AuthProvider = ({ children }) => {
     setUser,
     authTokens,
     setAuthTokens,
+    registerUser,
     loginUser,
     logoutUser
   }
