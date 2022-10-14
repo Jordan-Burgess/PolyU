@@ -7,6 +7,8 @@ import Partners from './Partners';
 import Events from './Events';
 import { useContext } from 'react';
 import AuthContext from "../components/Auth";
+import Edit from './Edit';
+import Settings from './Settings';
 
 export default function Main() {
   console.log(AuthContext)
@@ -17,6 +19,8 @@ export default function Main() {
           <Routes>
             <Route path='/' element={user ? <Navigate to={`/profile/${user.user_id}`} /> : <Login/>} />
             <Route path='/profile/:id' element={!user ? <Navigate to="/" /> : <Profile/>} exact />
+            {user ? <Route path={`/profile/${user.user_id}/edit`} element={!user ? <Navigate to="/" /> : <Edit/>} exact /> : null }
+            {user ? <Route path={`/profile/${user.user_id}/settings`} element={!user ? <Navigate to="/" /> : <Settings/>} exact /> : null }
             <Route path='/chat' element={!user ? <Navigate to="/" /> : <Chat/>} exact />
             <Route path='/partners' element={!user ? <Navigate to="/" /> : <Partners/>} exact />
             <Route path='/events' element={!user ? <Navigate to="/" /> : <Events/>} exact />

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function ProfileHeader({user, isOwner, id, userIn}) {
   
@@ -33,8 +33,8 @@ export default function ProfileHeader({user, isOwner, id, userIn}) {
         <div>
             {isOwner ? (
             <div>
-            <a href="#">Edit</a>
-            <a href="#">Settings</a>
+              <Link to={`/profile/${userIn}/edit`}>Edit</Link>
+              <Link to={`/profile/${userIn}/settings`}>Settings</Link>
             </div>
             ) : 
             <form onSubmit={handleSubmit}>
