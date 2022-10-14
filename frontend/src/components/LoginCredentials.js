@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react'
+import { Link } from 'react-router-dom';
 import AuthContext from "../components/Auth";
 
 export default function LoginCredentials() {
@@ -34,7 +35,7 @@ export default function LoginCredentials() {
         />
         <input type='submit' value='Log In'/>
       </form>
-      <p>Don't have an account?<a href="#"> Sign Up</a></p>
+      <p>Don't have an account?<Link to='/signup'> Sign Up</Link></p>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import AuthContext from "../components/Auth";
 import Edit from './Edit';
 import Settings from './Settings';
+import Signup from './Signup';
 
 export default function Main() {
   console.log(AuthContext)
@@ -18,6 +19,7 @@ export default function Main() {
       <div>
           <Routes>
             <Route path='/' element={user ? <Navigate to={`/profile/${user.user_id}`} /> : <Login/>} />
+            <Route path='/signup' element={user ? <Navigate to={`/profile/${user.user_id}`} /> : <Signup/>} />
             <Route path='/profile/:id' element={!user ? <Navigate to="/" /> : <Profile/>} exact />
             {user ? <Route path={`/profile/${user.user_id}/edit`} element={!user ? <Navigate to="/" /> : <Edit/>} exact /> : null }
             {user ? <Route path={`/profile/${user.user_id}/settings`} element={!user ? <Navigate to="/" /> : <Settings/>} exact /> : null }
