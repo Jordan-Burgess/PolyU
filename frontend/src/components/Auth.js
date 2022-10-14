@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const registerUser = async (username, password, password2) => {
+  const registerUser = async (username, password, password2, email, first_name, last_name) => {
     const response = await fetch("http://localhost:8000/register/", {
       method: "POST",
       headers: {
@@ -48,11 +48,15 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({
         username,
         password,
-        password2
+        password2,
+        email,
+        first_name,
+        last_name
       })
     });
     if (response.status === 201) {
-      navigate('/');
+      loginUser({username, password})
+      navigate('/partners');
     } else {
       console.log("Something went wrong!");
     }

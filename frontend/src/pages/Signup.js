@@ -6,7 +6,10 @@ export default function Signup() {
     const [userForm, setUserForm] = useState({
         username: "",
         password: "",
-        password2: ""
+        password2: "",
+        email: "",
+        first_name: "",
+        last_name: ""
     })
 
     const handleChange = (e) => {
@@ -15,7 +18,7 @@ export default function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        registerUser(userForm.username, userForm.password, userForm.password2)
+        registerUser(userForm.username, userForm.password, userForm.password2, userForm.email, userForm.first_name, userForm.last_name)
     }
   
     return (
@@ -27,6 +30,30 @@ export default function Signup() {
           placeholder='Username'
           onChange={handleChange}
           value={userForm.username}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder='E-mail Address'
+          onChange={handleChange}
+          value={userForm.email}
+          required
+        />
+        <input
+          type="text"
+          name="first_name"
+          placeholder='First Name'
+          onChange={handleChange}
+          value={userForm.first_name}
+          required
+        />
+        <input
+          type="text"
+          name="last_name"
+          placeholder='Last Name'
+          onChange={handleChange}
+          value={userForm.last_name}
           required
         />
         <input
