@@ -19,9 +19,21 @@ export default function UserPreview({user}) {
       getUser()
     }, [])
   
+
+    const loaded = () => {
+        return (
+          <div>
+              {userPre.profile[0].image}
+              {userPre.user[0].username}
+              <p>About Me:</p>
+              {userPre.profile[0].bio}
+          </div>
+        )
+    }
+
   return (
     <div>
-      {user.profile[0].image}
+      {userPre ? loaded() : <p>Loading</p>}
     </div>
   )
 }
