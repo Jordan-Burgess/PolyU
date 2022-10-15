@@ -23,7 +23,7 @@ export default function Main() {
             <Route path='/' element={user && !firstUser ? <Navigate to={`/profile/${user.user_id}`} /> : <Login/>} />
             <Route path='/signup' element={user && !firstUser ? <Navigate to={`/profile/${user.user_id}`} /> : <Signup/>} />
             <Route path='/profile/:id' element={!user ? <Navigate to="/" /> : <Profile/>} exact />
-            {user ? <Route path={`/profile/new/:id`} element={!user ? <Navigate to="/" /> : <NewProfile/>} exact /> : null }
+            {user && firstUser ? <Route path={`/profile/new/:id`} element={!user ? <Navigate to="/" /> : <NewProfile/>} exact /> : null }
             {user ? <Route path={`/profile/${user.user_id}/edit`} element={!user ? <Navigate to="/" /> : <Edit/>} exact /> : null }
             {user ? <Route path={`/profile/${user.user_id}/settings`} element={!user ? <Navigate to="/" /> : <Settings/>} exact /> : null }
             <Route path='/chat' element={!user ? <Navigate to="/" /> : <Chat/>} exact />
