@@ -9,15 +9,29 @@
   align-items: center;
 
 }
+.Title {
+  color: white;
+  text-align: left;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.Title h1 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
 .LoginBox {
   background-color: white;
   height: 250px;
-  width: 300px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  position: absolute;
-  right: 50px;
+  padding: 10px 5px;
+  margin-right: 50px;
+  margin-left: 15px;
 }
 
 .LoginInput {
