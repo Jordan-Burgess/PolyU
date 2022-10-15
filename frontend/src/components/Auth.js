@@ -93,6 +93,13 @@ export const AuthProvider = ({ children }) => {
     setLoading(false)
   }, [authTokens])
 
+  useEffect(() => {
+    if (firstUser && user) {
+      setFirstUser(true)
+      navigate(`/profile/new/${user.user_id}`)
+    }
+  }, [firstUser, user])
+
   if(loading) return <p>Loading</p>
   
   return (

@@ -26,9 +26,10 @@ export default function Profile() {
       }
     }
 
-    useEffect(()=>{
-      navigate(`/profile/new/${id}`)
-    }, [firstUser])
+    // useEffect(()=>{
+    //   console.log('Profile: ',firstUser)
+    //   navigate(`/profile/new/${id}`)
+    // }, [firstUser])
 
     useEffect(()=>{
       getUser()

@@ -20,7 +20,7 @@ export default function Main() {
   return (
       <div>
           <Routes>
-            <Route path='/' element={user ? <Navigate to={`/profile/${user.user_id}`} /> : <Login/>} />
+            <Route path='/' element={user && !firstUser ? <Navigate to={`/profile/${user.user_id}`} /> : <Login/>} />
             <Route path='/signup' element={user && !firstUser ? <Navigate to={`/profile/${user.user_id}`} /> : <Signup/>} />
             <Route path='/profile/:id' element={!user ? <Navigate to="/" /> : <Profile/>} exact />
             {user ? <Route path={`/profile/new/:id`} element={!user ? <Navigate to="/" /> : <NewProfile/>} exact /> : null }
