@@ -3,9 +3,8 @@ import LoginCredentials from '../components/LoginCredentials'
 
 export default function Login() {
   return (
-    <div>Login
-        <LoginCredentials/>
-    </div>
-
+      <div className="LoginPage">
+        <LoginCredentials />
+      </div>
   )
 }

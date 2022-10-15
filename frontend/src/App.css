@@ -2,20 +2,62 @@
   text-align: center;
 }
 
-.LoginBox {
-  background-color: blue;
-}
+.LoginPage {
+  height:100vh;
+  background-color: rgb(128, 169, 205);
+  display: flex;
+  align-items: center;
 
-.LoginForm {
+}
+.LoginBox {
+  background-color: white;
+  height: 250px;
+  width: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  right: 50px;
 }
 
 .LoginInput {
-  height: 20px;
-  margin: 5px;
+  background-color: rgb(217, 217, 217);
+  height: 35px;
+  margin: 7px;
+  padding-left: 10px;
+  width: 200px;
   border: none;
   border-radius: 30px;
+  font-style: italic;
+}
+
+.LoginButton {
+  height: 30px;
+  margin: 5px;
+  margin-top: 10px;
+  padding-left: 10px;
+  width: 200px;
+  background-color: rgb(128, 169, 205);
+  border: none;
+  box-shadow: 0px 2px 3px 1px rgba(20,20,20, 0.3);
+  color: white;
+}
+
+.LoginButton:hover {
+  background-color: rgb(165, 190, 213);
+}
+
+.SignupLink {
+  text-decoration: none;
+  color: blue;
+}
+.SignupLink:hover {
+  text-decoration: none;
+  color: rgb(128, 169, 205);
+}
+
+.NewAccount {
+  margin-top: 1px;
 }
 
 .App-logo {

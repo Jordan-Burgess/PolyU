@@ -35,9 +35,9 @@ export default function LoginCredentials() {
           value={userInput.password}
           required
         />
-        <input type='submit' value='Log In'/>
+        <input className="LoginButton" type='submit' value='Log In'/>
       </form>
-      <p>Don't have an account?<Link to='/signup'> Sign Up</Link></p>
+      <p className='NewAccount'>Don't have an account?<Link className="SignupLink" to='/signup'> Sign Up</Link></p>
     </div>
   )
 }
