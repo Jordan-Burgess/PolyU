@@ -1,18 +1,27 @@
 import { useState, useEffect, useContext } from 'react'
 import Nav from '../components/Nav'
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../components/Auth';
 
 export default function Edit() {
-    const [user, setUser] = useState(null)
+    const navigate = useNavigate()
     const userIn = useContext(AuthContext)
     const owner = userIn.user.user_id
+    const [profile, setProfile] = useState({
+      image: "",
+      banner: "",
+      native_language: "",
+      bio: "",
+      user: owner
+  })
+    
     const BASE_URL = `http://localhost:8000/${owner}/`
     
     const getUser = async () => {
         try {
           const response = await fetch(BASE_URL);
           const userInfo = await response.json();
-          setUser(userInfo.profile[0])
+          setProfile(userInfo.profile[0])
         }catch(err){
           console.log(err)
         }
@@ -22,20 +31,33 @@ export default function Edit() {
         getUser()
       }, [])
     
+
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      const response = await fetch(`http://localhost:8000/${owner}/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(profile),
+      });
+      navigate(`/profile/${owner}`)
+    } 
+      
     const handleChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setProfile({ ...profile, [e.target.name]: e.target.value });
     }
     
     const loaded = () => {
       return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
             <label for='image'>Profile Image
             <input
               type="text"
               name="image"
               onChange={handleChange}
-              value={user.image}
+              value={profile.image}
               required
             />
             </label>
@@ -45,7 +67,7 @@ export default function Edit() {
               name="banner"
               placeholder='Banner Image'
               onChange={handleChange}
-              value={user.banner}
+              value={profile.banner}
               required
             />
             </label>
@@ -55,7 +77,7 @@ export default function Edit() {
               name="native_language"
               placeholder='Native Language'
               onChange={handleChange}
-              value={user.native_language}
+              value={profile.native_language}
               required
             />
             </label>
@@ -65,10 +87,11 @@ export default function Edit() {
               name="bio"
               placeholder='About Me'
               onChange={handleChange}
-              value={user.bio}
+              value={profile.bio}
               required
             />
             </label>
+            <input type="submit" value="Update Profile"/>
 
             </form>
         </div>
@@ -83,7 +106,7 @@ export default function Edit() {
     return (
       <div>
         Edit
-        {user ? loaded() : <p>test</p>}
+        {profile ? loaded() : <p>test</p>}
         <Nav/>
       </div>
     )
