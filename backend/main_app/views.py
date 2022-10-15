@@ -37,6 +37,15 @@ class UserInfo(APIView):
         profile = ProfileSerializer(self.get_user_profile(id), many=True)
         return JsonResponse({"user": user.data, "profile": profile.data}, safe=False)
 
+    def post(self, request, id):
+        request.data['user'] = id
+        serializer = ProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            return JsonResponse(serializer.errors)
+
     def put(self, request, id):
         data = Profile.objects.get(user_id=id)
         serializer = ProfileSerializer(data, data=request.data)
