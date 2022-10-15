@@ -10,7 +10,6 @@ export default function ChatPreview({con, socket}) {
       const response = await fetch(BASE_URL);
       const allMessages = await response.json();
       setLastMessage(allMessages[allMessages.length - 1])
-      socket.emit("send_message", lastMessage)
   
     }catch(err){
       console.log(err)
@@ -18,14 +17,8 @@ export default function ChatPreview({con, socket}) {
   }
   
   useEffect(()=>{
-    getMessages()
-  }, [])
-
-  useEffect(()=>{
-    socket.on("receive_message", (data) => {
       getMessages()
-    })
-  }, [socket])
+  }, [])
 
   const loaded = () => {
   return (

@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
+import AuthContext from '../components/Auth';
 
 export default function NewProfile() {
+    const {setFirstUser} = useContext(AuthContext)
     const navigate = useNavigate()
     const {id} = useParams()
     const [profile, setProfile] = useState({
@@ -24,6 +26,7 @@ export default function NewProfile() {
             },
             body: JSON.stringify(profile),
         });
+        setFirstUser(false)
         navigate(`/profile/${id}`)
     }
 

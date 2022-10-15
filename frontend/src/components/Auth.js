@@ -82,7 +82,8 @@ export const AuthProvider = ({ children }) => {
     registerUser,
     loginUser,
     logoutUser,
-    firstUser
+    firstUser,
+    setFirstUser
   }
 
   useEffect(() => {

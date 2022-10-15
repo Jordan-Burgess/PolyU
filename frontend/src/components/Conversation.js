@@ -6,7 +6,6 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
   
   
   const getMessages = async () => {
-    console.log(conId)
     if (conId) {
       try {
         const response = await fetch(BASE_URL);
