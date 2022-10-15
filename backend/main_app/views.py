@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.http import JsonResponse
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -37,9 +37,19 @@ class UserInfo(APIView):
         profile = ProfileSerializer(self.get_user_profile(id), many=True)
         return JsonResponse({"user": user.data, "profile": profile.data}, safe=False)
 
-    def post(self, request, id):
+    def put(self, request, id):
+        data = Profile.objects.get(user_id=id)
+        serializer = ProfileSerializer(data, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            return JsonResponse(serializer.errors)
 
-        return id
+    def delete(self, request, id):
+        data = User.objects.get(id=id)
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class Conversations(APIView):
     def get(self, request, id):
