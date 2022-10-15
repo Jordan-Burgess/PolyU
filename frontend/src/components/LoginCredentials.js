@@ -15,9 +15,10 @@ export default function LoginCredentials() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="LoginBox">
+      <form className="LoginForm" onSubmit={handleSubmit}>
         <input
+          className="LoginInput"
           type="text"
           name="username"
           placeholder='Username'
@@ -26,6 +27,7 @@ export default function LoginCredentials() {
           required
         />
         <input
+          className="LoginInput"
           type="password"
           name="password"
           placeholder='Password'

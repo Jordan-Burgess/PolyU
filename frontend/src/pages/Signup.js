@@ -1,8 +1,10 @@
 import {useState, useContext} from 'react'
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../components/Auth'
 
 export default function Signup() {
-    const { registerUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const { user, registerUser, loginUser } = useContext(AuthContext)
     const [userForm, setUserForm] = useState({
         username: "",
         password: "",

@@ -1,14 +1,16 @@
 import { useState, useEffect, useContext } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileBody from '../components/ProfileBody'
 import Nav from '../components/Nav'
 import AuthContext from '../components/Auth';
 
 export default function Profile() {
+  const navigate = useNavigate()
   const [user, setUser] = useState(null)
   const {id} = useParams()
   const userIn = useContext(AuthContext)
+  const {firstUser} = useContext(AuthContext)
   const BASE_URL = `http://localhost:8000/${id}/`
   const isOwner = userIn.user.user_id == id 
   
@@ -23,6 +25,10 @@ export default function Profile() {
         console.log(err)
       }
     }
+
+    useEffect(()=>{
+      navigate(`/profile/new/${id}`)
+    }, [firstUser])
 
     useEffect(()=>{
       getUser()

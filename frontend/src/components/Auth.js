@@ -1,12 +1,13 @@
 import { createContext, useState, useEffect } from 'react';
 import jwt_decode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate} from "react-router-dom";
 
 const AuthContext = createContext()
 export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
+    const [firstUser, setFirstUser] = useState(false)
     const [authTokens, setAuthTokens] = useState(() => 
     localStorage.getItem('authTokens')
     ? JSON.parse(localStorage.getItem('authTokens'))
@@ -33,7 +34,6 @@ export const AuthProvider = ({ children }) => {
       setUser(jwt_decode(data.access));
       localStorage.setItem('authTokens', JSON.stringify(data))
       console.log('Auth: ',user)
-    //   navigate('profile')
     }else{
       console.log('Fetch Error')
     }
@@ -52,14 +52,19 @@ export const AuthProvider = ({ children }) => {
         email,
         first_name,
         last_name
-      })
+      }),
+      
     });
     if (response.status === 201) {
+      console.log("Registration Successful")
       loginUser({username, password})
-      navigate('/partners');
+      // return <Navigate to={`/profile/new/${user.id}`}/>
+      navigate(`/`)
     } else {
-      console.log("Something went wrong!");
+      console.log("Something went wrong");
     }
+    setFirstUser(true)
+    // return <Navigate to={`/profile/new/${user.id}`}/>
   };
 
   const logoutUser = () => {
@@ -76,10 +81,10 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    firstUser
   }
 
-  console.log("Auth2:", user)
   useEffect(() => {
     setLoading(true)
     if (authTokens) {
