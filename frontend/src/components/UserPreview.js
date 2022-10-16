@@ -22,11 +22,13 @@ export default function UserPreview({user}) {
 
     const loaded = () => {
         return (
-          <div>
-              {userPre.profile[0].image}
-              {userPre.user[0].username}
-              <p>About Me:</p>
-              {userPre.profile[0].bio}
+          <div className='InnerCard'>
+              <img src={userPre.profile[0].image} alt='Profile Image' className='ProfileImagePreview'/>
+              <h3 className='CardUser'>{userPre.user[0].username}</h3>
+              <p className='About'>About Me:</p>
+              {userPre.profile[0].bio.length < 30 ? (
+              <p className='CardBio'>{userPre.profile[0].bio}</p>
+              ) : <p className='CardBio'>{userPre.profile[0].bio.substring(0, 30)}...</p> }
           </div>
         )
     }

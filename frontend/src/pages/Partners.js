@@ -1,3 +1,4 @@
+import '../styles/partners.css'
 import {useState, useEffect, useContext} from 'react'
 import { Link } from 'react-router-dom';
 import AuthContext from '../components/Auth'
@@ -30,18 +31,22 @@ export default function Partners() {
   const loaded = () => {
     return users?.filter(user => user.id !== userIn.user.user_id).map((user) => {
       return (
-        <Link to={`/profile/${user.id}`}>
+        <div className='UserCard'>
+        <Link to={`/profile/${user.id}`} className="UserLink">
             <UserPreview user={user}/>
         </Link>
+        </div>
       );
     });
   };
 
   return (
-    <div className='Partners'>
-        <h2>All Users</h2>
+    <div>
+      <h2 className='PartnersTitle'>All Users</h2>
+      <div className='Partners'>
         {users ? loaded() : <p>Nope</p>}
-        <Nav/>
+      </div>
+      <Nav/>
     </div>
   )
 }
