@@ -43,7 +43,7 @@ export default function AllChats({user, socket, setConId, conId}) {
 
   return (
     <div className='AllChats'>
-      <h1>AllChats</h1>
+      <h1>All Chats</h1>
       {user ? loaded() : loading()}
     </div>
   )

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import AuthContext from './Auth'
 import dateFormat from 'dateformat'
 
@@ -6,12 +6,6 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
   const {user} = useContext(AuthContext)
   const [allMessages, setAllMessages] = useState([])
   const BASE_URL = `http://localhost:8000/conversations/${conId}/`
-  
-  const setRef = useCallback(node => {
-    if (node) {
-      node.scrollIntoView({ smooth: true })
-    }
-  }, [])
 
   const getMessages = async () => {
     if (conId) {
@@ -68,12 +62,11 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
   }, [socket])
 
   const loaded = () => {
-    return allMessages?.map((text, index) => {
-      const lastMessage = allMessages.length - 1 === index
+    return allMessages?.map((text) => {
       const isUser = text.user == user.user_id
       return (
         <div className='AllTexts'>
-        <div ref={lastMessage ? setRef : null} className={isUser ? 'Text Blue' : 'Text Gray'}>
+        <div className={isUser ? 'Text Blue' : 'Text Gray'}>
           <p>{text.text}</p>
           <p className='time'>{dateFormat(text.created_at, 'm/d/yy h:MM TT')}</p>
         </div>
@@ -92,6 +85,7 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
       <div className='ChatBox'>
       {allMessages ? loaded() : loading()}
       </div>
+      {conId ? (
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -104,6 +98,7 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
         />
         <input type='Submit' value='Enter' className='ChatButton'/>
       </form>
+      ) : null }
     </div>
   )
 }
