@@ -1,10 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
+import AuthContext from './Auth'
+import dateFormat from 'dateformat'
 
 export default function Conversation({socket, conId, setLastMessage, lastMessage}) {
+  const {user} = useContext(AuthContext)
   const [allMessages, setAllMessages] = useState([])
   const BASE_URL = `http://localhost:8000/conversations/${conId}/`
   
-  
+  const setRef = useCallback(node => {
+    if (node) {
+      node.scrollIntoView({ smooth: true })
+    }
+  }, [])
+
   const getMessages = async () => {
     if (conId) {
       try {
@@ -60,12 +68,15 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
   }, [socket])
 
   const loaded = () => {
-    return allMessages?.map((text) => {
+    return allMessages?.map((text, index) => {
+      const lastMessage = allMessages.length - 1 === index
+      const isUser = text.user == user.user_id
       return (
-        <div>
+        <div className='AllTexts'>
+        <div ref={lastMessage ? setRef : null} className={isUser ? 'Text Blue' : 'Text Gray'}>
           <p>{text.text}</p>
-          <p>{text.user_id}</p>
-          <p>{text.created_at}</p>
+          <p className='time'>{dateFormat(text.created_at, 'm/d/yy h:MM TT')}</p>
+        </div>
         </div>
       )
     })
@@ -78,17 +89,20 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
 
   return (
     <div>
+      <div className='ChatBox'>
       {allMessages ? loaded() : loading()}
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={text}
           name="text"
-          placeholer="Enter Message"
+          placeholder="Enter Message"
           onChange={handleChange}
           required
+          className='EnterChat'
         />
-        <input type='Submit' value='Enter'/>
+        <input type='Submit' value='Enter' className='ChatButton'/>
       </form>
     </div>
   )

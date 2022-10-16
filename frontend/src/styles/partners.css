@@ -45,7 +45,7 @@
 .ProfileImagePreview {
     height: 100px;
     width: 100px;
-    border: 6px white solid;
+    border: 4px rgb(128, 169, 205) solid;
     border-radius: 85px;
     margin-top: 10px;
 }

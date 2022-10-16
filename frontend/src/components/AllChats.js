@@ -28,9 +28,9 @@ export default function AllChats({user, socket, setConId, conId}) {
       }
       
       return (
-          <a href="#" onClick={handleClick}>
+          <div onClick={handleClick} className='ChatPreview'>
             <ChatPreview con={con.id || conId} socket={socket} />
-          </a>
+          </div>
       );
     });
   };
@@ -42,7 +42,8 @@ export default function AllChats({user, socket, setConId, conId}) {
   }
 
   return (
-    <div>AllChats
+    <div className='AllChats'>
+      <h1>AllChats</h1>
       <p>Search Box</p>
       {user ? loaded() : loading()}
     </div>

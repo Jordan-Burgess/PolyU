@@ -1,3 +1,4 @@
+import '../styles/chat.css'
 import { useContext, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import Nav from '../components/Nav'
@@ -14,15 +15,19 @@ export default function Chat() {
   const [conId, setConId] = useState(null)
   const [lastMessage, setLastMessage] = useState()
 
-  // useEffect(()=>{
-  //   setConId(location.state.conversationId)
-  // }, []);
+  useEffect(()=>{
+    if(conId){
+      setConId(location.state.conversationId)
+    }
+  }, []);
 
   return (
-    <div>Chat
+    <div className='ChatBody'>
+      <div className='Chat'>
         <AllChats socket={socket} user={user} conId={conId} setConId={setConId}/>
-        <ChatRoom socket={socket} conId={conId} setLastMessage={setLastMessage} lastMessage={lastMessage}/>
-        <Nav/>
+        <ChatRoom socket={socket} user={user} conId={conId} setLastMessage={setLastMessage} lastMessage={lastMessage}/>
+      </div>
+      <Nav/>
     </div>
 
   )
