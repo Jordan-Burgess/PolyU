@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 urlpatterns = [
     path('', views.Users.as_view(), name="users"),
     path('<int:id>/', views.UserInfo.as_view(), name="user_info"),
+    path('conversation/<int:id>/', views.FindConversation.as_view(), name="conversation"),
     path('conversations/user/<int:id>/', views.Conversations.as_view(), name="conversations"),
     path('conversations/new/<int:id1>/<int:id2>/', views.CreateConversation.as_view(), name="create_conversations"),
     path('conversations/<int:pk>/', views.ConversationMessages.as_view(), name="conversation_messages"),

@@ -60,6 +60,12 @@ class UserInfo(APIView):
         data.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class FindConversation(APIView):
+    def get(self, request, id):
+        data = Conversation.objects.all().filter(id=id)
+        serializer = ConversationSerializer(data, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
 class Conversations(APIView):
     def get(self, request, id):
         data = Conversation.objects.all().filter(users__id=id)
