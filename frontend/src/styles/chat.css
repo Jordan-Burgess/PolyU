@@ -5,6 +5,19 @@
     text-align: left;
 }
 
+.HeaderPreview {
+    display: flex;
+}
+
+.HeaderPreview h2{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.HeaderPreview img {
+    margin-bottom: 20px;
+}
+
 .AllChats {
     height: 100vh;
     margin-bottom: 100px;
@@ -23,6 +36,14 @@
     border: rgb(189, 185, 185) solid;
     margin-right: 30px;
     background-color: rgb(150, 175, 197); 
+}
+
+.ChatImagePreview{
+    height: 50px;
+    width: 50px;
+    border: 4px rgb(128, 169, 205) solid;
+    border-radius: 85px;
+    margin-top: 10px; 
 }
 
 .InnerChatPreview{

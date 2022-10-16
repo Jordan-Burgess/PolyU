@@ -44,7 +44,6 @@ export default function AllChats({user, socket, setConId, conId}) {
   return (
     <div className='AllChats'>
       <h1>AllChats</h1>
-      <p>Search Box</p>
       {user ? loaded() : loading()}
     </div>
   )
