@@ -23,22 +23,24 @@ export default function ProfileHeader({user, isOwner, id, userIn}) {
   }
   
   return (
-    <div>
-        <img src='#' alt='banner'/>
-        <img src='#' alt='profile image'/>
+    <div className='ProfileHeader'>
+        <div className='BannerBox'>
+          <img src={user.profile[0]?.banner} alt='banner' className='Banner'/>
+        </div>
+        <img src={user.profile[0]?.image} alt='profile image' className="ProfileImage"/>
         <div>
-            <h1>{user.user[0]?.username}</h1>
-            <h2>Native Language: {user.profile[0]?.native_language}</h2>
+            <h1 className='Username'>{user.user[0]?.username}</h1>
+            <h2 className='Native'>Native Language: {user.profile[0]?.native_language}</h2>
         </div>
         <div>
             {isOwner ? (
-            <div>
-              <Link to={`/profile/${userIn}/edit`}>Edit</Link>
-              <Link to={`/profile/${userIn}/settings`}>Settings</Link>
+            <div className='EditSetting'>
+              <Link to={`/profile/${userIn}/edit`} className='edit'>Edit <img className='EditIcons' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png' alt='edit icon'/></Link>
+              <Link to={`/profile/${userIn}/settings`} className='edit'>Settings <img className="EditIcons" src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="Settings Icon"/></Link>
             </div>
             ) : 
             <form onSubmit={handleSubmit}>
-              <button type='submit'>Chat With {user.user[0]?.username}</button>
+              <button type='submit' className='ChatWith'>Chat with {user.user[0]?.username}</button>
             </form>
             }
         </div>

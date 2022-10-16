@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import Main from './pages/Main'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './components/Auth';

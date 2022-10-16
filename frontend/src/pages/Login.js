@@ -1,5 +1,7 @@
 import React from 'react'
+import '../styles/login.css';
 import LoginCredentials from '../components/LoginCredentials'
+
 
 export default function Login() {
   return (

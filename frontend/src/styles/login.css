@@ -1,0 +1,75 @@
+.LoginPage {
+    height:100vh;
+    background-color: rgb(128, 169, 205);
+    display: flex;
+    align-items: center;
+  
+  }
+  .Title {
+    color: white;
+    text-align: left;
+    margin-left: 50px;
+    margin-right: 50px;
+    max-width: 600px;
+  }
+  
+  .Title h1 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .LoginBox {
+    background-color: white;
+    height: 250px;
+    width: 500px;
+    min-width: 300px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px 5px;
+    margin-right: 50px;
+    margin-left: 15px;
+  }
+  
+  .LoginInput {
+    background-color: rgb(217, 217, 217);
+    height: 35px;
+    margin: 7px;
+    padding-left: 10px;
+    width: 200px;
+    border: none;
+    border-radius: 30px;
+    font-style: italic;
+  }
+  
+  .LoginButton {
+    height: 30px;
+    margin: 5px;
+    margin-top: 10px;
+    padding-left: 10px;
+    width: 200px;
+    background-color: rgb(128, 169, 205);
+    border: none;
+    box-shadow: 0px 2px 3px 1px rgba(20,20,20, 0.3);
+    color: white;
+  }
+  
+  .LoginButton:hover {
+    background-color: rgb(165, 190, 213);
+  }
+  
+  .SignupLink {
+    text-decoration: none;
+    color: blue;
+  }
+  .SignupLink:hover {
+    text-decoration: none;
+    color: rgb(128, 169, 205);
+  }
+  
+  .NewAccount {
+    margin-top: 1px;
+  }
+  

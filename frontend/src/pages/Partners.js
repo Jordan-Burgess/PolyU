@@ -38,7 +38,8 @@ export default function Partners() {
   };
 
   return (
-    <div>Partners
+    <div className='Partners'>
+        <h2>All Users</h2>
         {users ? loaded() : <p>Nope</p>}
         <Nav/>
     </div>

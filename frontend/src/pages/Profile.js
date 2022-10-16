@@ -1,3 +1,4 @@
+import '../styles/profile.css'
 import { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import ProfileHeader from '../components/ProfileHeader'
@@ -37,7 +38,7 @@ export default function Profile() {
   
   const loaded = () => {
     return (
-      <div>Profile
+      <div className='Profile'>
         <ProfileHeader user={user} isOwner={isOwner} id={id} userIn={userIn.user.user_id}/>
         <ProfileBody user={user}/>
       </div>

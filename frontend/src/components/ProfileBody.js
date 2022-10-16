@@ -1,21 +1,25 @@
 export default function ProfileBody({user}) {
   return (
     <div>
-        <section>
-            <h3>Language Learning</h3>
-            <p>Languages</p>
+        <section className="ProfileSection">
+            <h3>Languages Learning</h3>
+            <hr/>
+            <p>French, Spanish, Chinese</p>
         </section>
-        <section>
+        <section className="ProfileSection">
             <h3>About Me</h3>
+            <hr/>
             <p>{user.profile[0]?.bio}</p>
         </section>
-        <section>
+        <section className="ProfileSection">
             <h3>Language Focus</h3>
-            <p>Hashtags</p>
+            <hr/>
+            <a href="#" className="Hashtag">#Work</a> <a href="#" className="Hashtag">#Study</a> <a href="#" className="Hashtag">#Travel</a>
         </section>
-        <section>
+        <section className="ProfileSection">
             <h3>Events</h3>
-            <p>All Rsvp Events</p>
+            <hr/>
+            <p className="EventNotice">Coming soon!</p>
         </section>
     </div>
   )
