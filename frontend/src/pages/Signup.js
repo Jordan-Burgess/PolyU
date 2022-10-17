@@ -1,3 +1,4 @@
+import '../styles/signup.css'
 import {useState, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../components/Auth'
@@ -24,8 +25,11 @@ export default function Signup() {
     }
   
     return (
-    <div>Signup
+    <div className='SignUpPage'>
+        <div className='Page'>
+        <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
+        <div>
         <input
           type="text"
           name="username"
@@ -42,6 +46,8 @@ export default function Signup() {
           value={userForm.email}
           required
         />
+        </div>
+        <div>
         <input
           type="text"
           name="first_name"
@@ -58,6 +64,8 @@ export default function Signup() {
           value={userForm.last_name}
           required
         />
+        </div>
+        <div>
         <input
           type="password"
           name="password"
@@ -74,9 +82,11 @@ export default function Signup() {
           value={userForm.password2}
           required
         />
+        </div>
         <p>{userForm.password2 !== userForm.password ? "Passwords do not match" : ""}</p>
-        <input type='submit' value='Sign Up'/>
+        <input className='Submit' type='submit' value='Join PolyU'/>
         </form>
+        </div>
     </div>
   )
 }

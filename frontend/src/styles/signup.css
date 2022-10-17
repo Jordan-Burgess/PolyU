@@ -1,0 +1,47 @@
+.SignUpPage {
+    height: 100vh;
+    background-color: rgb(128, 169, 205);
+    padding: 20px;
+}
+
+.Page {
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    text-align: left;
+}
+
+h2 {
+    margin-left: 30px;
+    font-size: 35px;
+}
+
+.Page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    background-color: lightgray;
+    border: none;
+    border-radius: 30px;
+    height: 25px;
+    width: 200px;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.Submit {
+    background-color: rgb(128, 169, 205);
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    height: 50px;
+    width: 500px;
+    margin-top: -25px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 3px 1px rgba(20,20,20, 0.3);
+}
+

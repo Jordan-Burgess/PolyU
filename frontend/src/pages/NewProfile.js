@@ -1,3 +1,4 @@
+import '../styles/newprofile.css'
 import { useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import AuthContext from '../components/Auth';
@@ -31,9 +32,10 @@ export default function NewProfile() {
     }
 
     return (
-    <div>NewProfile
-        <form onSubmit={handleSubmit}>
-            <label for='image'>Profile Image
+    <div className='NewPage'>
+        <h2>New Profile</h2>
+        <form className='NewForm' onSubmit={handleSubmit}>
+            <label for='image'>Profile Image:
             <input
               type="text"
               name="image"
@@ -42,7 +44,7 @@ export default function NewProfile() {
               required
             />
             </label>
-            <label for='banner'>Banner Image
+            <label for='banner'>Banner Image:
             <input
               type="text"
               name="banner"
@@ -51,7 +53,7 @@ export default function NewProfile() {
               required
             />
             </label>
-            <label for='native_language'>Native Language
+            <label for='native_language'>Native Language:
             <input
               type="text"
               name="native_language"
@@ -60,17 +62,18 @@ export default function NewProfile() {
               required
             />
             </label>
-            <label for='bio'>About Me
-            <input
+            <label for='bio'>About Me:
+            <textarea
               type="text"
               name="bio"
               placeholder='About Me'
               onChange={handleChange}
               required
+              className='AboutMe'
             />
-            <input type='submit' value="Create Your Profile"/>
+            
             </label>
-
+            <input className='Submit' type='submit' value="Create Your Profile"/>
         </form>
     </div>
   )

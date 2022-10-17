@@ -1,0 +1,39 @@
+.NewPage {
+    margin: 40px 40px 40px 40px;
+    text-align: left;
+}
+
+.NewForm {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.NewForm input, textarea {
+    margin-left: 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: lightgrey;
+    height: 30px;
+    width: 500px;
+    padding-left: 15px;
+}
+
+.NewForm .AboutMe {
+    height: 100px;
+    padding-top: 15px;
+    border-radius: 25px;
+    vertical-align: middle;
+}
+
+.NewForm .Submit {
+    align-self: center;
+    background-color: rgb(165, 190, 213);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.NewForm .Submit:hover {
+    background-color: rgb(63, 139, 206)
+}
