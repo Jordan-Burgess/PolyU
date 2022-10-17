@@ -8,10 +8,12 @@ export default function Nav(selected) {
 
   return (
     <div className='NavBar'>
-        <Link to={`/profile/${user.user_id}`}>Profile</Link>
-        <Link to='/chat'>Chat</Link>
-        <Link to='/partners'>Partners</Link>
-        <Link to='/events'>Events</Link>
+        <div className='Links'>
+        <Link className='Link' to={`/profile/${user.user_id}`}>Profile</Link>
+        <Link className='Link' to='/chat'>Chat</Link>
+        <Link className='Link' to='/partners'>Partners</Link>
+        <Link className='Link' to='/events'>Events</Link>
+        </div>
     </div>
   )
 }

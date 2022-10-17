@@ -5,3 +5,22 @@
     height: 50px;
     bottom: 0;
 }
+
+.Links {
+    margin-top: 15px;
+    display: flex;
+    gap: 70px;
+    margin-left: 30%;
+}
+
+.Link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.Link:hover {
+    color: rgb(216, 218, 219);
+    font-size: 16px;
+}
