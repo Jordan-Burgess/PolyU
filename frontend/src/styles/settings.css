@@ -1,0 +1,20 @@
+.SettingsPage {
+    margin: 40px 40px 100px 40px;
+    text-align: left;
+}
+
+.Button {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    height: 25px;
+    border-radius: 30px;
+    background-color: rgb(165, 190, 213);
+    color: white;
+    font-weight: bold;
+}
+
+.Button:hover {
+    background-color: rgb(63, 139, 206);
+}

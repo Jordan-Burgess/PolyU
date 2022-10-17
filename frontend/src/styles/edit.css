@@ -32,3 +32,7 @@
     color: white;
     font-weight: bold;
 }
+
+.EditForm .Submit:hover {
+    background-color: rgb(63, 139, 206)
+}
