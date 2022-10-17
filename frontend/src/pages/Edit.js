@@ -1,3 +1,4 @@
+import '../styles/edit.css'
 import { useState, useEffect, useContext } from 'react'
 import Nav from '../components/Nav'
 import { useNavigate } from 'react-router-dom';
@@ -51,9 +52,9 @@ export default function Edit() {
     const loaded = () => {
       return (
         <div>
-            <form onSubmit={handleSubmit}>
-            <label for='image'>Profile Image
-            <input
+            <form className='EditForm' onSubmit={handleSubmit}>
+            <label for='image'>Profile Image:
+              <input
               type="text"
               name="image"
               onChange={handleChange}
@@ -61,7 +62,7 @@ export default function Edit() {
               required
             />
             </label>
-            <label for='banner'>Banner Image
+            <label for='banner'>Banner Image:
             <input
               type="text"
               name="banner"
@@ -71,7 +72,7 @@ export default function Edit() {
               required
             />
             </label>
-            <label for='native_language'>Native Language
+            <label for='native_language'>Native Language:
             <input
               type="text"
               name="native_language"
@@ -81,17 +82,18 @@ export default function Edit() {
               required
             />
             </label>
-            <label for='bio'>About Me
-            <input
+            <label for='bio'>About Me:
+            <textarea
               type="text"
               name="bio"
               placeholder='About Me'
               onChange={handleChange}
               value={profile.bio}
               required
+              className='AboutMe'
             />
             </label>
-            <input type="submit" value="Update Profile"/>
+            <input className='Submit' type="submit" value="Update Profile"/>
 
             </form>
         </div>
@@ -105,8 +107,10 @@ export default function Edit() {
   
     return (
       <div>
-        Edit
+        <div className='EditPage'>
+        <h2>Edit Your Profile</h2>
         {profile ? loaded() : <p>test</p>}
+        </div>
         <Nav/>
       </div>
     )
