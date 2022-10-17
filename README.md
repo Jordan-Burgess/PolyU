@@ -10,10 +10,8 @@ https://www.figma.com/file/PqXE1xQru22aXWqhsm5rVR/PolyU?node-id=0%3A1
 ## Data Models
 https://www.figma.com/file/u8yfvUt597Wg1SxrZpchTn/PolyU-ERD?node-id=0%3A1
 
-## Milestones
-- Create user accounts, profile pages, and chat feature
-- Add translation API to chat
-- Create a “Find language partner” page to show users
+## Future Features
+- Adjust User Profile Models to include additional information such as languages learning. 
 - Add function to show only users of target language
 - Add function to add hashtags to user search.
 - Create Event routes and show page
@@ -22,5 +20,7 @@ https://www.figma.com/file/u8yfvUt597Wg1SxrZpchTn/PolyU-ERD?node-id=0%3A1
 
 ## Technologies Used
 - Django PostgreSQL - Backend
+- Django REST Frameworks
+- Django REST Frameworks - Simple JWT
 - React - Frontend
-- Socket.io (Instant Messaging Feature)
+- Socket.io - Server (Instant Messaging Feature)
