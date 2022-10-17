@@ -1,4 +1,4 @@
-# [PolyU](https://poly-u.netlify.app/)
+# PolyU - [Live Site](https://poly-u.netlify.app/)
 PolyU is a language exchange app users can use to chat with other users in their target language.
 
 ## User Stories
