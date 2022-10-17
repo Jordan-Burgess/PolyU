@@ -57,7 +57,7 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
 
   useEffect(()=>{
     socket.on("receive_message", (data) => {
-      setAllMessages([...allMessages, data])
+      getMessages()
     })
   }, [socket])
 
