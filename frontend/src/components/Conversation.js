@@ -30,7 +30,7 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
     try {
       const newMessage = {
         text: text,
-        user: 1
+        user: user.user_id
       }
       const messageOutput = JSON.stringify(newMessage)
       const options = {
@@ -43,8 +43,8 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
       const response = await fetch(BASE_URL, options)
       const responseData = await response.json()
       setAllMessages([...allMessages, responseData])
-      socket.emit("send_message", responseData)
-      setLastMessage(responseData)
+      socket.emit("send_message", text)
+      // setLastMessage(responseData)
       setText('')
     }catch(err){
       console.log(err)
@@ -57,7 +57,7 @@ export default function Conversation({socket, conId, setLastMessage, lastMessage
 
   useEffect(()=>{
     socket.on("receive_message", (data) => {
-      getMessages()
+      setAllMessages([...allMessages, data])
     })
   }, [socket])
 
