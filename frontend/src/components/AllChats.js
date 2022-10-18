@@ -3,7 +3,7 @@ import ChatPreview from './ChatPreview'
 
 export default function AllChats({user, socket, setConId, conId}) {
   const id = user.user_id
-  const BASE_URL = `http://localhost:8000/conversations/user/${id}/`
+  const BASE_URL = `https://polyu-backend.herokuapp.com/conversations/user/${id}/`
 
   const [conversations, setConversations] = useState([])
   

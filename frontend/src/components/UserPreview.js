@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 export default function UserPreview({user}) {
   
   const [userPre, setUserPre] = useState(null)
-  const BASE_URL = `http://localhost:8000/${user.id}/`
+  const BASE_URL = `https://polyu-backend.herokuapp.com/${user.id}/`
 
   const getUser = async () => {
       try {

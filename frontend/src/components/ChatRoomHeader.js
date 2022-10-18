@@ -10,7 +10,7 @@ export default function ChatRoomHeader({conId}) {
   const getUser = async () => {
     if (userChat) {
     try {
-      const response = await fetch(`http://localhost:8000/${userChat}/`);
+      const response = await fetch(`https://polyu-backend.herokuapp.com/${userChat}/`);
       const userInfo = await response.json();
       setUserPre(userInfo)
     }catch(err){
@@ -22,7 +22,7 @@ export default function ChatRoomHeader({conId}) {
   const getConversation = async () => {
     if (conId) {
     try {
-      const response = await fetch(`http://localhost:8000/conversation/${conId}/`);
+      const response = await fetch(`https://polyu-backend.herokuapp.com/conversation/${conId}/`);
       const userInfo = await response.json();
       if (userInfo[0].users[0] != user.user_id){
         setUserChat(userInfo[0].users[0])

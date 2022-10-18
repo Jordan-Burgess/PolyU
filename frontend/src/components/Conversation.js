@@ -5,7 +5,7 @@ import dateFormat from 'dateformat'
 export default function Conversation({socket, conId, setLastMessage, lastMessage}) {
   const {user} = useContext(AuthContext)
   const [allMessages, setAllMessages] = useState([])
-  const BASE_URL = `http://localhost:8000/conversations/${conId}/`
+  const BASE_URL = `https://polyu-backend.herokuapp.com/conversations/${conId}/`
 
   const getMessages = async () => {
     if (conId) {

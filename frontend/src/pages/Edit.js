@@ -16,7 +16,7 @@ export default function Edit() {
       user: owner
   })
     
-    const BASE_URL = `http://localhost:8000/${owner}/`
+    const BASE_URL = `https://polyu-backend.herokuapp.com/${owner}/`
     
     const getUser = async () => {
         try {
@@ -35,7 +35,7 @@ export default function Edit() {
 
     const handleSubmit = async (e) => {
       e.preventDefault()
-      const response = await fetch(`http://localhost:8000/${owner}/`, {
+      const response = await fetch(`https://polyu-backend.herokuapp.com/${owner}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

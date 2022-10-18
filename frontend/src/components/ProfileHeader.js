@@ -13,7 +13,7 @@ export default function ProfileHeader({user, isOwner, id, userIn}) {
           "Content-Type": "application/json"
         },
       }
-      const response = await fetch(`http://localhost:8000/conversations/new/${id}/${userIn}/`, options)
+      const response = await fetch(`https://polyu-backend.herokuapp.com/conversations/new/${id}/${userIn}/`, options)
       const responseData = await response.json()
       const conversationId = responseData[0]?.id
       navigate('/chat', {state: conversationId})

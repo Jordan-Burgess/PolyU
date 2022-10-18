@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const loginUser = async({username, password}) => {
-    const response = await fetch("http://localhost:8000/token/", {
+    const response = await fetch("https://polyu-backend.herokuapp.com/token/", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const registerUser = async (username, password, password2, email, first_name, last_name) => {
-    const response = await fetch("http://localhost:8000/register/", {
+    const response = await fetch("https://polyu-backend.herokuapp.com/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

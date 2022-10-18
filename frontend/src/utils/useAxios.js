@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { useContext } from 'react';
 import AuthContext from '../components/Auth';
 
-const BASE_URL = 'http://localhost:8000/'
+const BASE_URL = 'https://polyu-backend.herokuapp.com/'
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);

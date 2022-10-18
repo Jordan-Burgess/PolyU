@@ -11,7 +11,7 @@ export default function Settings() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (window.confirm("Are you sure you want to Delete your account.\nAll your data will be lost. \nThis action cannot be undone.")){
-      const response = await fetch(`http://localhost:8000/${user.user_id}/`, {
+      const response = await fetch(`https://polyu-backend.herokuapp.com/${user.user_id}/`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"

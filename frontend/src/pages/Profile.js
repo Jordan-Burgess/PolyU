@@ -12,7 +12,7 @@ export default function Profile() {
   const {id} = useParams()
   const userIn = useContext(AuthContext)
   const {firstUser} = useContext(AuthContext)
-  const BASE_URL = `http://localhost:8000/${id}/`
+  const BASE_URL = `https://polyu-backend.herokuapp.com/${id}/`
   const isOwner = userIn.user.user_id == id 
   
 

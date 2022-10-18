@@ -7,7 +7,7 @@ export default function ChatPreview({con, socket}) {
   const [userChat, setUserChat] = useState()
   const [userPre, setUserPre] = useState()
   const [otherUser, setOtherUser] = useState()
-  const BASE_URL = `http://localhost:8000/conversations/${con}/`
+  const BASE_URL = `https://polyu-backend.herokuapp.com/conversations/${con}/`
   
   const getMessages = async () => {
 
@@ -30,7 +30,7 @@ export default function ChatPreview({con, socket}) {
   const getUser = async () => {
     if (userChat) {
     try {
-      const response = await fetch(`http://localhost:8000/${userChat}/`);
+      const response = await fetch(`https://polyu-backend.herokuapp.com/${userChat}/`);
       const userInfo = await response.json();
       setUserPre(userInfo)
     }catch(err){
@@ -41,7 +41,7 @@ export default function ChatPreview({con, socket}) {
 
   const getConversation = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/conversation/${con}/`);
+      const response = await fetch(`https://polyu-backend.herokuapp.com/conversation/${con}/`);
       const userInfo = await response.json();
       if (userInfo[0].users[0] != user.user_id){
         setUserChat(userInfo[0].users[0])
