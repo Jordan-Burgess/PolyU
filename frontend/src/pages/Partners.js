@@ -9,7 +9,7 @@ export default function Partners() {
   
   const [users, setUsers] = useState()
   const userIn = useContext(AuthContext)
-  const BASE_URL = `http://localhost:8000/` 
+  const BASE_URL = `https://polyu-backend.herokuapp.com/` 
   
 
   const getUsers = async () => {
