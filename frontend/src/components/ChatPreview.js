@@ -29,6 +29,7 @@ export default function ChatPreview({con, socket}) {
   }
 
   const getUser = async () => {
+    if (userChat) {
     try {
       const response = await fetch(`http://localhost:8000/${userChat}/`);
       const userInfo = await response.json();
@@ -36,6 +37,7 @@ export default function ChatPreview({con, socket}) {
     }catch(err){
       console.log(err)
     }
+  }
   }
 
   const getConversation = async () => {
