@@ -11,7 +11,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "https://poly-u.netlify.app/",
+        origin: "https://poly-u.netlify.app",
         methods: ["GET", "POST"],
     }
 })
