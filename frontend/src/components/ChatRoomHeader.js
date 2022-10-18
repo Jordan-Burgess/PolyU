@@ -8,6 +8,7 @@ export default function ChatRoomHeader({conId}) {
   const [userPre, setUserPre] = useState()
 
   const getUser = async () => {
+    if (userChat) {
     try {
       const response = await fetch(`http://localhost:8000/${userChat}/`);
       const userInfo = await response.json();
@@ -15,9 +16,11 @@ export default function ChatRoomHeader({conId}) {
     }catch(err){
       console.log(err)
     }
+    }
   }
 
   const getConversation = async () => {
+    if (conId) {
     try {
       const response = await fetch(`http://localhost:8000/conversation/${conId}/`);
       const userInfo = await response.json();
@@ -31,6 +34,7 @@ export default function ChatRoomHeader({conId}) {
     }catch(err){
       console.log(err)
     }
+  }
   }
 
   useEffect(() => {
