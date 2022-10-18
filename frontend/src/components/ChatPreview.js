@@ -17,7 +17,6 @@ export default function ChatPreview({con, socket}) {
       setLastMessage(allMessages[allMessages.length - 1])
       for (let i=0; i<allMessages.length; i++){
         if (allMessages[i].user != user.user_id){
-          console.log(user)
           setUserChat(allMessages[i].user)
           break
         }

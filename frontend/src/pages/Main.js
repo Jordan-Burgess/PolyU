@@ -13,10 +13,7 @@ import Signup from './Signup';
 import NewProfile from './NewProfile';
 
 export default function Main() {
-  console.log(AuthContext)
   let {user, firstUser} = useContext(AuthContext)
-  console.log('Test:', user)
-  console.log('First: ', firstUser)
   return (
       <div>
           <Routes>
